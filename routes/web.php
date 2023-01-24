@@ -15,4 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\MainFormController::class, 'index'])->name('mainPage');
 
-Route::post('/', [\App\Http\Controllers\MainFormController::class, 'store'])->name('store');
+Route::get('/requests_history', [\App\Http\Controllers\MainFormController::class, 'requestsMemory'])->name('requestsPage');
+
+Route::post('/clear', [\App\Http\Controllers\MainFormController::class, 'clearData'])->name('clearData');
+
+Route::post('/store', [\App\Http\Controllers\MainFormController::class, 'store'])->name('store');

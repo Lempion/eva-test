@@ -11,6 +11,14 @@ html, body {
     width: 600px;
 }
 
-.mainForm textarea{
+.mainForm textarea {
     max-height: 600px;
+}
+
+.textContent {
+    border: 1px solid black;
+}
+
+.memoryContainer{
+    width: 800px;
 }

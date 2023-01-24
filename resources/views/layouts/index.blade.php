@@ -11,8 +11,23 @@
     <title>{{ $title }}</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
+
+    <div class="collapse navbar-collapse d-flex justify-content-center align-items-center" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('mainPage') }}">Главная <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('requestsPage') }}">Все запросы</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 <div class="container d-flex justify-content-center align-items-center">
+
+
     @yield('content')
 </div>
 
