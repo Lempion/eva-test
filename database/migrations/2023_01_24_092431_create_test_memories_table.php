@@ -16,6 +16,7 @@ class CreateTestMemoriesTable extends Migration
         Schema::create('test_memories', function (Blueprint $table) {
             $table->id();
             $table->text('form_text');
+            $table->string('lang')->default('ru');
             $table->timestamps();
         });
     }
