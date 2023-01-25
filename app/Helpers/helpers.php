@@ -24,7 +24,7 @@ if (!function_exists('detectLangAndReplace')) {
 
         $text = preg_replace('/([' . $languages[$currentLang] . '])/ui', '<strong>\1</strong>', $str);
 
-        return ['lang' => $currentLang, 'text' => $text];
+        return ['lang' => $ruChars >= $enChars ? 'ru' : 'eu', 'text' => $text];
     }
 
 }
