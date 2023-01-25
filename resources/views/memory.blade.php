@@ -16,10 +16,10 @@
             @endforeach
         </div>
     @else
-        <div class="d-flex flex-column">
+        <dvi class="d-flex flex-column">
             <h1>Вы ещё не сделали не одной проверки</h1>
             <a href="{{ route('mainPage') }}">Перейти к созданию</a>
-        </div>
+        </dvi>
 
     @endif
 @endsection
