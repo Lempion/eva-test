@@ -23,24 +23,17 @@ class MainFormController extends Controller
     {
         if ($text = $request->checkText) {
 
-            preg_match_all('/[а-яё]/ui', $text, $matches);
-            $ruChars = count($matches[0]);
-            preg_match_all('/[a-z]/ui', $text, $matches);
-            $enChars = count($matches[0]);
+            $ruChars = countCharsLangInStr($text);
 
-            if ($ruChars >= $enChars) {
-                $text = preg_replace('/([a-z])/ui', '<strong>\1</strong>', $text);
-                $lang = 'ru';
-            } else {
-                $text = preg_replace('/([а-яё])/ui', '<strong>\1</strong>', $text);
-                $lang = 'en';
-            }
+            $enChars = countCharsLangInStr($text, 'en');
+
+            $preparedText = detectLangAndReplace($ruChars, $enChars, $text);
 
             if (!session('addedBase')) {
                 $post = new TestMemory();
 
-                $post->lang = $lang;
-                $post->form_text = $text;
+                $post->lang = $preparedText['lang'];
+                $post->form_text = $preparedText['text'];
 
                 $post->save();
 
@@ -48,7 +41,7 @@ class MainFormController extends Controller
 
             }
 
-            session(['oldText' => $text]);
+            session(['oldText' => $preparedText['text']]);
         }
 
         return redirect()->route('mainPage');
@@ -58,6 +51,7 @@ class MainFormController extends Controller
     public function clearData(Request $request)
     {
         session()->forget(['oldText', 'addedBase']);
+
         return redirect()->route('mainPage');
     }
 }
