@@ -18,13 +18,13 @@ if (!function_exists('countCharsLangInStr')) {
 if (!function_exists('detectLangAndReplace')) {
     function detectLangAndReplace($ruChars, $enChars, $str): array
     {
-        $languages = ['ru' => 'а-яё', 'en' => 'a-z'];
+        $languagesForExcept = ['en' => 'а-яё', 'ru' => 'a-z'];
 
-        $currentLang = ($ruChars >= $enChars ? 'en' : 'ru');
+        $currentLang = ($ruChars >= $enChars ? 'ru' : 'en');
 
-        $text = preg_replace('/([' . $languages[$currentLang] . '])/ui', '<strong>\1</strong>', $str);
+        $text = preg_replace('/([' . $languagesForExcept[$currentLang] . '])/ui', '<strong>\1</strong>', $str);
 
-        return ['lang' => $ruChars >= $enChars ? 'ru' : 'eu', 'text' => $text];
+        return ['lang' => $currentLang, 'text' => $text];
     }
 
 }
